@@ -3,11 +3,11 @@ from tkinter import ttk, messagebox, simpledialog
 import threading
 
 from core import scanner, startup, quarantine, defender, firmware, vault
+from core.icon import icon_path
 from core.logger import logger
 
 
-def ask_master_password(root, create: bool = False) -> str | None:
-    """Запросить мастер-пароль. Если create=True — создать новый."""
+def ask_master_password(root, create: bool = False):
     if create:
         p1 = simpledialog.askstring("Мастер-пароль", "Задайте мастер-пароль карантина:", show="*", parent=root)
         if not p1:
@@ -39,6 +39,13 @@ class UnSecurityApp(tk.Tk):
         self.geometry("1100x680")
         self.minsize(900, 520)
 
+        p = icon_path()
+        if p:
+            try:
+                self.iconbitmap(str(p))
+            except Exception:
+                pass
+
         self.findings = []
         self.startup_findings = []
         self._row_paths = {}
@@ -62,11 +69,9 @@ class UnSecurityApp(tk.Tk):
         self.status_var = tk.StringVar(value="Готов")
         ttk.Label(self, textvariable=self.status_var, anchor="w", padding=(8, 2)).pack(fill="x")
 
-        # Ноутбук: вкладки
         nb = ttk.Notebook(self)
         nb.pack(fill="both", expand=True, padx=8, pady=8)
 
-        # Вкладка 1 — сканер
         scan_tab = ttk.Frame(nb)
         nb.add(scan_tab, text="Сканер")
 
@@ -85,7 +90,6 @@ class UnSecurityApp(tk.Tk):
         self.tree.pack(side="left", fill="both", expand=True)
         vsb.pack(side="right", fill="y")
 
-        # Вкладка 2 — карантин
         quar_tab = ttk.Frame(nb)
         nb.add(quar_tab, text="Карантин")
 
@@ -107,8 +111,6 @@ class UnSecurityApp(tk.Tk):
         ttk.Button(q_btns, text="Запустить (временно)", command=self.on_run_from_quarantine).pack(side="left", padx=4)
 
         self.on_refresh_quarantine()
-
-    # ---- сканер ----
 
     def on_scan_all(self):
         self.status_var.set("Сканирование дисков...")
@@ -188,8 +190,6 @@ class UnSecurityApp(tk.Tk):
         except Exception as e:
             messagebox.showerror("Ошибка", str(e))
 
-    # ---- карантин ----
-
     def on_refresh_quarantine(self):
         for i in self.q_tree.get_children():
             self.q_tree.delete(i)
@@ -209,7 +209,6 @@ class UnSecurityApp(tk.Tk):
         password = ask_master_password(self)
         if not password:
             return
-        # оригинальное имя — убираем префикс даты и .quar
         base = name.split("_", 2)[-1] if "_" in name else name
         if base.endswith(".quar"):
             base = base[:-5]
@@ -246,8 +245,6 @@ class UnSecurityApp(tk.Tk):
             messagebox.showinfo("Карантин", "Запущено. Процесс работает.")
         except Exception as e:
             messagebox.showerror("Ошибка", str(e))
-
-    # ---- helpers ----
 
     def _clear_tree(self):
         for i in self.tree.get_children():
