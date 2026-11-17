@@ -1,1 +1,1 @@
-rmdir /S /Q "C:\ProgramData\UnSecuretyUnlock"
+dir /a "C:\ProgramData\UnSecuretyUnlock"
