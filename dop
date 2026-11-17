@@ -1,1 +1,7 @@
 takeown /F "C:\ProgramData\UnSecuretyUnlock" /R /D Y & icacls "C:\ProgramData\UnSecuretyUnlock" /grant *S-1-5-32-544:F /T & rmdir /S /Q "C:\ProgramData\UnSecuretyUnlock"
+ОШИБКА: Не удается найти указанный файл.
+C:\ProgramData\Application Data\*: Отказано в доступе.
+Успешно обработано 0 файлов; не удалось обработать 1 файлов
+Не удается найти указанный файл.
+
+C:\WINDOWS\system32>
