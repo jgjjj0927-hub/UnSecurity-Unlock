@@ -1,76 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
   <defs>
-    <radialGradient id="bg" cx="50%" cy="40%" r="70%">
-      <stop offset="0%" stop-color="#1a2230"/>
-      <stop offset="100%" stop-color="#0a0e14"/>
-    </radialGradient>
-    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#3fd0ff"/>
-      <stop offset="50%" stop-color="#1f8fff"/>
-      <stop offset="100%" stop-color="#0a5fd6"/>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1a1a1a"/>
+      <stop offset="100%" stop-color="#000000"/>
     </linearGradient>
-    <linearGradient id="edge" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#7fe8ff"/>
-      <stop offset="100%" stop-color="#1f8fff"/>
+    <linearGradient id="pinkGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ff8fc8"/>
+      <stop offset="100%" stop-color="#d6338a"/>
     </linearGradient>
-    <radialGradient id="eyeGlow" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
-      <stop offset="60%" stop-color="#3fd0ff" stop-opacity="0.6"/>
-      <stop offset="100%" stop-color="#3fd0ff" stop-opacity="0"/>
-    </radialGradient>
-    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur stdDeviation="3" result="blur"/>
-      <feMerge>
-        <feMergeNode in="blur"/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
+    <linearGradient id="pinkGrad2" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffb3d9"/>
+      <stop offset="100%" stop-color="#ff5fa8"/>
+    </linearGradient>
   </defs>
 
-  <!-- фон -->
-  <rect width="256" height="256" rx="48" fill="url(#bg)"/>
+  <!-- чёрный фон с лёгким градиентом как в 2007 -->
+  <rect width="256" height="256" rx="24" fill="url(#bgGrad)"/>
 
-  <!-- двойная рамка -->
-  <rect x="8" y="8" width="240" height="240" rx="40" fill="none" stroke="#1f8fff" stroke-opacity="0.15" stroke-width="2"/>
-  <rect x="14" y="14" width="228" height="228" rx="34" fill="none" stroke="#7fe8ff" stroke-opacity="0.10" stroke-width="1"/>
+  <!-- верхняя светлая полоска (как у старых иконок) -->
+  <rect x="0" y="0" width="256" height="70" rx="24" fill="#ffffff" fill-opacity="0.04"/>
+  <rect x="0" y="70" width="256" height="1" fill="#ffffff" fill-opacity="0.06"/>
 
-  <!-- щит -->
-  <path d="M128 30
-           C 168 30, 200 42, 208 50
-           C 208 118, 200 178, 128 210
-           C 56 178, 48 118, 48 50
-           C 56 42, 88 30, 128 30 Z"
-        fill="url(#shieldGrad)" stroke="url(#edge)" stroke-width="3" filter="url(#softGlow)"/>
+  <!-- розовые квадратики: 3x3 сетка, разные оттенки -->
+  <g>
+    <!-- ряд 1 -->
+    <rect x="48"  y="48"  width="44" height="44" rx="4" fill="url(#pinkGrad2)"/>
+    <rect x="106" y="48"  width="44" height="44" rx="4" fill="url(#pinkGrad)"/>
+    <rect x="164" y="48"  width="44" height="44" rx="4" fill="url(#pinkGrad2)"/>
 
-  <!-- внутренний контур щита -->
-  <path d="M128 46
-           C 160 46, 184 54, 192 62
-           C 192 118, 184 168, 128 196
-           C 72 168, 64 118, 64 62
-           C 72 54, 96 46, 128 46 Z"
-        fill="none" stroke="#0a0e14" stroke-opacity="0.35" stroke-width="2"/>
+    <!-- ряд 2 -->
+    <rect x="48"  y="106" width="44" height="44" rx="4" fill="url(#pinkGrad)"/>
+    <rect x="106" y="106" width="44" height="44" rx="4" fill="url(#pinkGrad2)"/>
+    <rect x="164" y="106" width="44" height="44" rx="4" fill="url(#pinkGrad)"/>
 
-  <!-- глаз-сканер -->
-  <ellipse cx="128" cy="120" rx="46" ry="26" fill="#0a0e14" fill-opacity="0.85" stroke="#7fe8ff" stroke-width="2"/>
-  <circle cx="128" cy="120" r="16" fill="url(#eyeGlow)"/>
-  <circle cx="128" cy="120" r="8" fill="#ffffff"/>
-  <circle cx="128" cy="120" r="4" fill="#0a0e14"/>
+    <!-- ряд 3 -->
+    <rect x="48"  y="164" width="44" height="44" rx="4" fill="url(#pinkGrad2)"/>
+    <rect x="106" y="164" width="44" height="44" rx="4" fill="url(#pinkGrad)"/>
+    <rect x="164" y="164" width="44" height="44" rx="4" fill="url(#pinkGrad2)"/>
+  </g>
 
-  <!-- горизонтальные линии-скан -->
-  <line x1="70" y1="120" x2="104" y2="120" stroke="#7fe8ff" stroke-opacity="0.6" stroke-width="2" stroke-linecap="round"/>
-  <line x1="152" y1="120" x2="186" y2="120" stroke="#7fe8ff" stroke-opacity="0.6" stroke-width="2" stroke-linecap="round"/>
+  <!-- блики на квадратах (как в 2007) -->
+  <rect x="48"  y="48"  width="44" height="18" rx="4" fill="#ffffff" fill-opacity="0.25"/>
+  <rect x="106" y="48"  width="44" height="18" rx="4" fill="#ffffff" fill-opacity="0.25"/>
+  <rect x="164" y="48"  width="44" height="18" rx="4" fill="#ffffff" fill-opacity="0.25"/>
+  <rect x="48"  y="106" width="44" height="18" rx="4" fill="#ffffff" fill-opacity="0.25"/>
+  <rect x="106" y="106" width="44" height="18" rx="4" fill="#ffffff" fill-opacity="0.25"/>
+  <rect x="164" y="106" width="44" height="18" rx="4" fill="#ffffff" fill-opacity="0.25"/>
+  <rect x="48"  y="164" width="44" height="18" rx="4" fill="#ffffff" fill-opacity="0.25"/>
+  <rect x="106" y="164" width="44" height="18" rx="4" fill="#ffffff" fill-opacity="0.25"/>
+  <rect x="164" y="164" width="44" height="18" rx="4" fill="#ffffff" fill-opacity="0.25"/>
 
-  <!-- блик -->
-  <path d="M128 30 C 148 30, 168 36, 182 42 L 176 58 C 162 52, 146 48, 128 48 Z"
-        fill="#ffffff" fill-opacity="0.25"/>
-
-  <!-- подпись разработчика -->
-  <text x="128" y="234"
+  <!-- подпись -->
+  <text x="128" y="240"
         text-anchor="middle"
-        font-family="Segoe UI, Arial, sans-serif"
-        font-size="11"
+        font-family="Tahoma, Verdana, sans-serif"
+        font-size="10"
         letter-spacing="0.5"
-        fill="#7fe8ff"
-        fill-opacity="0.55">Создано разработчиком z00xTeam</text>
+        fill="#ff8fc8"
+        fill-opacity="0.45">z00xTeam</text>
 </svg>
