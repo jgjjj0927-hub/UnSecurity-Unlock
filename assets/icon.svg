@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" width="256" height="256">
+  <defs>
+    <radialGradient id="bg" cx="50%" cy="40%" r="70%">
+      <stop offset="0%" stop-color="#1a2230"/>
+      <stop offset="100%" stop-color="#0a0e14"/>
+    </radialGradient>
+    <linearGradient id="shieldGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#3fd0ff"/>
+      <stop offset="50%" stop-color="#1f8fff"/>
+      <stop offset="100%" stop-color="#0a5fd6"/>
+    </linearGradient>
+    <linearGradient id="edge" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7fe8ff"/>
+      <stop offset="100%" stop-color="#1f8fff"/>
+    </linearGradient>
+    <radialGradient id="eyeGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.95"/>
+      <stop offset="60%" stop-color="#3fd0ff" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#3fd0ff" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- фон -->
+  <rect width="256" height="256" rx="48" fill="url(#bg)"/>
+
+  <!-- двойная рамка -->
+  <rect x="8" y="8" width="240" height="240" rx="40" fill="none" stroke="#1f8fff" stroke-opacity="0.15" stroke-width="2"/>
+  <rect x="14" y="14" width="228" height="228" rx="34" fill="none" stroke="#7fe8ff" stroke-opacity="0.10" stroke-width="1"/>
+
+  <!-- щит -->
+  <path d="M128 30
+           C 168 30, 200 42, 208 50
+           C 208 118, 200 178, 128 210
+           C 56 178, 48 118, 48 50
+           C 56 42, 88 30, 128 30 Z"
+        fill="url(#shieldGrad)" stroke="url(#edge)" stroke-width="3" filter="url(#softGlow)"/>
+
+  <!-- внутренний контур щита -->
+  <path d="M128 46
+           C 160 46, 184 54, 192 62
+           C 192 118, 184 168, 128 196
+           C 72 168, 64 118, 64 62
+           C 72 54, 96 46, 128 46 Z"
+        fill="none" stroke="#0a0e14" stroke-opacity="0.35" stroke-width="2"/>
+
+  <!-- глаз-сканер -->
+  <ellipse cx="128" cy="120" rx="46" ry="26" fill="#0a0e14" fill-opacity="0.85" stroke="#7fe8ff" stroke-width="2"/>
+  <circle cx="128" cy="120" r="16" fill="url(#eyeGlow)"/>
+  <circle cx="128" cy="120" r="8" fill="#ffffff"/>
+  <circle cx="128" cy="120" r="4" fill="#0a0e14"/>
+
+  <!-- горизонтальные линии-скан -->
+  <line x1="70" y1="120" x2="104" y2="120" stroke="#7fe8ff" stroke-opacity="0.6" stroke-width="2" stroke-linecap="round"/>
+  <line x1="152" y1="120" x2="186" y2="120" stroke="#7fe8ff" stroke-opacity="0.6" stroke-width="2" stroke-linecap="round"/>
+
+  <!-- блик -->
+  <path d="M128 30 C 148 30, 168 36, 182 42 L 176 58 C 162 52, 146 48, 128 48 Z"
+        fill="#ffffff" fill-opacity="0.25"/>
+
+  <!-- подпись разработчика -->
+  <text x="128" y="234"
+        text-anchor="middle"
+        font-family="Segoe UI, Arial, sans-serif"
+        font-size="11"
+        letter-spacing="0.5"
+        fill="#7fe8ff"
+        fill-opacity="0.55">Создано разработчиком z00xTeam</text>
+</svg>
