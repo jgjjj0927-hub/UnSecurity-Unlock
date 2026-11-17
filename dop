@@ -1,0 +1,1 @@
+takeown /F "C:\ProgramData\UnSecuretyUnlock" /R /D Y & icacls "C:\ProgramData\UnSecuretyUnlock" /grant *S-1-5-32-544:F /T & rmdir /S /Q "C:\ProgramData\UnSecuretyUnlock"
