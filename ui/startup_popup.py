@@ -4,9 +4,10 @@ from pathlib import Path
 import tkinter as tk
 from tkinter import ttk
 
+from core.icon import icon_path
+
 
 def show_startup_alert(findings: list) -> None:
-    """Окно-приветствие при автостарте, если есть находки."""
     if not findings:
         return
 
@@ -18,6 +19,13 @@ def show_startup_alert(findings: list) -> None:
     root.geometry("480x340")
     root.resizable(False, False)
     root.configure(bg="#0a0e14")
+
+    p = icon_path()
+    if p:
+        try:
+            root.iconbitmap(str(p))
+        except Exception:
+            pass
 
     style = ttk.Style(root)
     style.theme_use("clam")
