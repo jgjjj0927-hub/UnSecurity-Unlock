@@ -12,7 +12,8 @@ python -m nuitka ^
   --onefile ^
   --enable-plugin=tk-inter ^
   --windows-console-mode=disable ^
-  --windows-icon-from-ico=icon.ico ^
+  --windows-icon-from-ico=assets\icon-2.ico ^
+  --include-data-dir=assets=assets ^
   --output-filename=UnSecurityUnlock.exe ^
   --assume-yes-for-downloads ^
   --remove-output ^
